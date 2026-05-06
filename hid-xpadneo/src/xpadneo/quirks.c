@@ -61,7 +61,8 @@ int xpadneo_quirks_init(struct xpadneo_devdata *xdata)
 	u8 oui_byte = 0;
 	char oui[3] = { };
 
-	for (int i = 0; i < ARRAY_SIZE(quirks); i++) {
+	int i;
+	for (i = 0; i < ARRAY_SIZE(quirks); i++) {
 		const struct quirk *q = &quirks[i];
 
 		if (q->name_match && gamepad->name
@@ -74,7 +75,7 @@ int xpadneo_quirks_init(struct xpadneo_devdata *xdata)
 	}
 
 	kernel_param_lock(THIS_MODULE);
-	for (int i = 0; gamepad->uniq && (i < param_quirks.nargs); i++) {
+	for (i = 0; gamepad->uniq && (i < param_quirks.nargs); i++) {
 		const char *arg = param_quirks.args[i];
 		size_t uniq_len = strnlen(gamepad->uniq, 18);
 		size_t arg_len = strnlen(arg, 128);

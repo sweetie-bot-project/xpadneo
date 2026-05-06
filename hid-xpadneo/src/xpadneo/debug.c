@@ -156,7 +156,8 @@ void xpadneo_debug_descriptor(const struct hid_device *hdev, const __u8 *rdesc, 
 
 	do_dump = param_debug_descriptor;
 	if (!do_dump) {
-		for (int i = 0; i < ARRAY_SIZE(known_checksums); i++) {
+		int i;
+		for (i = 0; i < ARRAY_SIZE(known_checksums); i++) {
 			if (crc == known_checksums[i].crc16) {
 				hid_info(hdev,
 					 "report descriptor: known checksum crc16 0x%04x name '%s'\n",
